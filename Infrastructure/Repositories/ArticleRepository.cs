@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Context;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -30,10 +31,10 @@ namespace Infrastructure.Repositories
             return obj;
         }
 
-        public void Delete(Article obj)
+        public async Task Delete(Article obj)
         {
             _context.Articles.Remove(obj);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Article?> GetById(int id)
@@ -44,7 +45,10 @@ namespace Infrastructure.Repositories
 
         public IQueryable<Article> GetAll()
         {
-            return _context.Articles.AsQueryable();
+            return _context.Articles
+                .Include(a => a.Category)
+                .Include(a => a.Writer)
+                .AsQueryable();
         }
 
         public IQueryable<Article> GetMostView()

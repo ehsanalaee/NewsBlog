@@ -31,10 +31,10 @@ namespace Infrastructure.Repositories
             return obj;
         }
 
-        public void Delete(Comment obj)
+        public async Task Delete(Comment obj)
         {
             _context.Comments.Remove(obj);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Comment?> GetById(int id)

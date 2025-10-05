@@ -14,6 +14,6 @@ namespace Core.Entities
         public string Name { get; set; }
 
         // Navigation
-        public ICollection<Article> Articles { get; set; }
+        public ICollection<Article>? Articles { get; set; }
     }
 }

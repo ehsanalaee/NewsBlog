@@ -31,10 +31,10 @@ namespace Infrastructure.Repositories
             return obj;
         }
 
-        public void Delete(Writer obj)
+        public async Task Delete(Writer obj)
         {
             _context.Writers.Remove(obj);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Writer?> GetById(int id)

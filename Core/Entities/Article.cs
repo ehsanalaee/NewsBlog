@@ -20,9 +20,9 @@ namespace Core.Entities
         public DateTime DateCreated { get; set; }
 
         // Foreign keys
-        [ForeignKey("CategoryId")]
+
         public int CategoryId { get; set; }
-        [ForeignKey("WriterId")]
+
         public int WriterId { get; set; }
 
         // Navigation

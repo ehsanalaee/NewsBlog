@@ -30,10 +30,10 @@ namespace Infrastructure.Repositories
             return obj;
         }
 
-        public void Delete(Category obj)
+        public async Task Delete(Category obj)
         {
             _context.Categories.Remove(obj);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public IQueryable<Category> GetAll()

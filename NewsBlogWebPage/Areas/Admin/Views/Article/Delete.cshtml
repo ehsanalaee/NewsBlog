@@ -1,0 +1,11 @@
+﻿@using Core.Entities
+@model Article
+<h3>حذف مقاله</h3>
+<div class="alert alert-danger">
+    آیا مطمئن هستید که می‌خواهید "<strong>@Model.Title</strong>" را حذف کنید؟
+</div>
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">حذف</button>
+    <a asp-action="Index" class="btn btn-secondary">انصراف</a>
+</form>

@@ -6,7 +6,7 @@ namespace Core.Interfaces
     {
         T Create(T obj);
         T Edit(T obj);
-        void Delete(T obj);
+        Task Delete(T obj);
         IQueryable<T> GetAll();
         Task<T?> GetById(int id);
     }

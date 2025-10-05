@@ -1,0 +1,49 @@
+﻿@using NewsBlogWebPage.Areas.Admin.Models
+@model ArticleCreateEditVM
+@{
+    ViewBag.Title = "ایجاد مقاله";
+}
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="row g-3">
+    <div class="col-12">
+        <label asp-for="Title" class="form-label">عنوان</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label asp-for="CategoryId" class="form-label">دسته بندی</label>
+        <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Categories, "Value", "Text"))">
+            <option value="">انتخاب کنید</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label asp-for="WriterId" class="form-label">نویسنده</label>
+        <select asp-for="WriterId" class="form-select" asp-items="@(new SelectList(ViewBag.Writers, "Value", "Text"))">
+            <option value="">انتخاب کنید</option>
+        </select>
+        <span asp-validation-for="WriterId" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Image" class="form-label">تصویر</label>
+        <input asp-for="Image" type="file" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Text" class="form-label">متن</label>
+        <textarea asp-for="Text" class="form-control" rows="8"></textarea>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-success">ایجاد</button>
+        <a asp-action="Index" class="btn btn-secondary">انصراف</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

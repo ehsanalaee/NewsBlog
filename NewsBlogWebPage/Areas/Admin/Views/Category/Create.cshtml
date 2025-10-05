@@ -1,0 +1,23 @@
+﻿@using Core.Entities
+@model Category
+@{
+    ViewBag.Title = "ایجاد دسته بندی";
+}
+<h3>@ViewBag.Title</h3>
+
+<form asp-action="Create" method="post" class="row gy-3">
+    <div class="col-12">
+        <label asp-for="Name" class="form-label">نام</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-success">ایجاد</button>
+        <a asp-action="Index" class="btn btn-secondary">انصراف</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

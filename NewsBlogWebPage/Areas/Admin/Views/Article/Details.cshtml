@@ -1,0 +1,22 @@
+﻿@using Core.Entities
+@model Article
+@{
+    ViewBag.Title = Model.Title;
+}
+<h3>@Model.Title</h3>
+<div class="row">
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.ImageName))
+        {
+            <img src="~/img/@Model.ImageName" class="img-fluid rounded" />
+        }
+    </div>
+    <div class="col-md-8">
+        <p><strong>دسته</strong>: @Model.Category?.Name</p>
+        <p><strong>نویسنده</strong>: @Model.Writer?.Name</p>
+        <p><strong>تاریخ</strong>: @Model.DateCreated.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</p>
+        <hr />
+        <div>@Html.Raw(Model.Text)</div>
+        <a asp-action="Index" class="btn btn-outline-secondary mt-3">بازگشت</a>
+    </div>
+</div>

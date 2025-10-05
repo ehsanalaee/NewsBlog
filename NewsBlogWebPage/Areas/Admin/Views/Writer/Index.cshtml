@@ -1,0 +1,34 @@
+﻿@using Core.Entities
+@model IEnumerable<Writer>
+@{
+    ViewBag.Title = "نویسندگان";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">نویسندگان</h3>
+    <a class="btn btn-success" asp-action="Create">ایجاد نویسنده</a>
+</div>
+
+<table class="table table-striped table-bordered align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>نام</th>
+            <th style="width:160px">عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var w in Model)
+        {
+            <tr>
+                <td class="align-middle">@w.Name</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@w.Id">ویرایش</a>
+
+                    <form asp-action="Delete" method="post" class="d-inline-block ms-2">
+                        <input type="hidden" name="id" value="@w.Id" />
+                        <button type="submit" class="btn btn-sm btn-danger">حذف</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
