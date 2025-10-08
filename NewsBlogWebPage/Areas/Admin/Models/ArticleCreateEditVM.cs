@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
+
 public class ArticleCreateEditVM
 {
     public int Id { get; set; }

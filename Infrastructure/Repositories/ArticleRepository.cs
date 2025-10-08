@@ -39,7 +39,7 @@ namespace Infrastructure.Repositories
 
         public async Task<Article?> GetById(int id)
         {
-            return await _context.Articles.Include(a => a.Comments).Include(a => a.Writer).FirstOrDefaultAsync(a => a.Id == id);
+            return await _context.Articles.Include(a => a.Comments).Include(a => a.Writer).Include(a => a.Category).FirstOrDefaultAsync(a => a.Id == id);
 
         }
 

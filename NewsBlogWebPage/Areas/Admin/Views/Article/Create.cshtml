@@ -4,6 +4,7 @@
     ViewBag.Title = "ایجاد مقاله";
 }
 <form asp-action="Create" method="post" enctype="multipart/form-data" class="row g-3">
+    @Html.AntiForgeryToken()
     <div class="col-12">
         <label asp-for="Title" class="form-label">عنوان</label>
         <input asp-for="Title" class="form-control" />
@@ -34,7 +35,7 @@
 
     <div class="col-12">
         <label asp-for="Text" class="form-label">متن</label>
-        <textarea asp-for="Text" class="form-control" rows="8"></textarea>
+        <textarea asp-for="Text" id="ckEdiotr4" class="form-control" rows="8"></textarea>
         <span asp-validation-for="Text" class="text-danger"></span>
     </div>
 
@@ -44,6 +45,14 @@
     </div>
 </form>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+
+
+
+<script src="/ckeditor4/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('ckEdiotr4' , 
+        {
+            customCunfig: '/ckeditor4/ckeditor/config.js'
+        }
+    );
+</script>
