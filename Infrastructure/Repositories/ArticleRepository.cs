@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
+
     public class ArticleRepository : IBaseRepository<Article>, IArticleRepository
     {
         private readonly AppDbContext _context;
@@ -51,16 +52,29 @@ namespace Infrastructure.Repositories
                 .AsQueryable();
         }
 
-        public IQueryable<Article> GetMostView()
+        public async Task<List<Article>> GetMostView()
         {
-            return _context.Articles.AsQueryable().OrderByDescending(a => a.ViewCount).Take(4);
+            return await _context.Articles.OrderByDescending(a => a.ViewCount).Take(4).Include(a => a.Writer).Include(a => a.Category).ToListAsync();
         }
 
-        public IQueryable<Article> GetRecents()
+        public async Task<List<Article>> GetRecents()
         {
-            return _context.Articles.AsQueryable().OrderByDescending(a => a.DateCreated).Take(4);
+            return await _context.Articles.OrderByDescending(a => a.DateCreated).Take(4).Include(a => a.Writer).Include(a => a.Category).ToListAsync();
         }
 
+        public async Task<List<Article>> GetRelated(Article article)
+        {
+            return await _context.Articles.Where(a => a.CategoryId == article.CategoryId).OrderByDescending(a => a.DateCreated).Take(5).Include(a => a.Writer).Include(a => a.Category).ToListAsync();
+        }
+
+        public void RaisedView(Article article)
+        {
+            if (article != null)
+            {
+                article.ViewCount++;
+                _context.SaveChanges();
+            }
+        }
     }
 }
 
